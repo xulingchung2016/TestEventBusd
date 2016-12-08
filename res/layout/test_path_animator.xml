@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+     <com.example.testeventbus.MyAnimView  
+        android:layout_width="match_parent"  
+        android:layout_height="match_parent" />  
+        
+     <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/b" android:paddingTop="5dp" android:paddingLeft="5dp" android:id="@+id/b"/>
+
+<ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/c" android:paddingTop="5dp" android:paddingLeft="5dp" android:id="@+id/c"/>
+
+<ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/d" android:paddingTop="5dp" android:paddingLeft="5dp" android:id="@+id/d"/>
+
+<ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/e" android:paddingTop="5dp" android:paddingLeft="5dp" android:id="@+id/e"/>
+
+<ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/a" android:id="@+id/a"/>
+
+</FrameLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.testeventbus.RefreshRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00ff00"
+    android:orientation="vertical" >
+       <TextView
+        android:id="@+id/buttontest"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="#ff00ff"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="move" />
+    <RelativeLayout
+  android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:background="@android:color/transparent">
+           <LinearLayout
+               android:id="@+id/ll_handle" 
+         android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:focusable="false"
+          android:orientation="horizontal" 
+        >
+        
+        <TextView
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ff0000"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="move" />
+        
+    </LinearLayout>
+    <RelativeLayout 
+        android:id="@+id/rl_b"
+          android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00ffff"
+    android:layout_below="@+id/ll_handle"
+        >
+        <com.example.testeventbus.MyListView 
+            android:id="@+id/list"
+             android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    
+            ></com.example.testeventbus.MyListView>
+    </RelativeLayout>
+    
+</RelativeLayout>
+
+   <!--  <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="发送" />
+    
+    <com.example.testeventbus.MultiDirectionSlidingDrawer
+       xmlns:my="http://schemas.android.com/apk/res/com.example.testeventbus"
+             android:id="@+id/drawer"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="0dp"
+             my:content="@+id/content"
+             my:direction="bottomToTop"
+             my:allowSingleTap="true"
+             my:animateOnClick="true"
+             
+             my:handle="@+id/handle" >
+
+             <include
+                 android:id="@id/content"
+                 layout="@layout/pen_content" />
+
+             <ImageView
+                 android:id="@id/handle"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:src="@drawable/__leak_canary_icon" />
+         </com.example.testeventbus.MultiDirectionSlidingDrawer> -->
+
+</com.example.testeventbus.RefreshRelativeLayout>
