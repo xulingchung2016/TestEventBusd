@@ -28,7 +28,6 @@ public class BaseFundChartView extends View implements View.OnTouchListener{
 	    Paint huodongPaint;
 	    Paint huodongPaintText;
 	    List<Point> points;
-	    
 	    private int TextSize = 15;
 	    private int YPaddingTop = 30;
 	    private int YPaddingBottom = 40;
