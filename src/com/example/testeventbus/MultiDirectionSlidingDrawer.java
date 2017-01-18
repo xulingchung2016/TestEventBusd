@@ -54,7 +54,6 @@ private VelocityTracker mVelocityTracker;
 
 private boolean mInvert;
 private boolean mVertical;
-//一开始时不隐藏mExpanded=true
 private boolean mExpanded= false;
 private int mBottomOffset;
 private int mTopOffset;
@@ -282,7 +281,7 @@ final int height = b - t;
 
 final View handle = mHandle;
 
-//getMeasuredWidth 得到的是某个View想要在parent view里面占的大小
+//getMeasuredWidth 寰楀埌鐨勬槸鏌愪釜View鎯宠鍦╬arent view閲岄潰鍗犵殑澶у皬
 int handleWidth = handle.getMeasuredWidth();
 int handleHeight = handle.getMeasuredHeight();
 
@@ -294,7 +293,6 @@ int handleTop;
 final View content = mContent;
 
 if (mVertical) {
-// 拉环的位置
 handleLeft = width - handleWidth;
 if (mInvert) {
 Log.d(LOG_TAG, "content.layout(1)");
@@ -407,7 +405,7 @@ negative = yVelocity < 0;
 if (xVelocity < 0) {
 xVelocity = -xVelocity;
 }
-// fix by Maciej Ciemięga.
+// fix by Maciej Ciemi臋ga.
 if ((!mInvert && xVelocity > mMaximumMinorVelocity)
 || (mInvert && xVelocity < mMaximumMinorVelocity)) {
 xVelocity = mMaximumMinorVelocity;
@@ -417,7 +415,7 @@ negative = xVelocity < 0;
 if (yVelocity < 0) {
 yVelocity = -yVelocity;
 }
-// fix by Maciej Ciemięga.
+// fix by Maciej Ciemi臋ga.
 if ((!mInvert && yVelocity > mMaximumMinorVelocity)
 || (mInvert && yVelocity < mMaximumMinorVelocity)) {
 yVelocity = mMaximumMinorVelocity;

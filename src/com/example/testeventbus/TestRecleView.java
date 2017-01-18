@@ -3,7 +3,7 @@ package com.example.testeventbus;
 import java.util.ArrayList;
 
 import com.example.testeventbus.TestRecyclerAdapter.RecycleItemClickListener;
-import com.github.mikephil.charting.charts.LineChart;
+/*import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -15,7 +15,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.utils.Utils;
+import com.github.mikephil.charting.utils.Utils;*/
 
 import android.app.Activity;
 import android.content.Context;
@@ -42,23 +42,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.github.mikephil.charting.listener.ChartTouchListener;
+/*import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.ChartTouchListener.ChartGesture;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;*/
 
-public class TestRecleView extends Activity implements RecycleItemClickListener,OnChartGestureListener, OnChartValueSelectedListener {
+public class TestRecleView extends Activity implements RecycleItemClickListener
+//,OnChartGestureListener, OnChartValueSelectedListener
+{
 	private RecyclerView recyclerView_one;  
     @SuppressWarnings("rawtypes")
 	private RecyclerView.Adapter mAdapter;  
     private LinearLayoutManager mLayoutManager; 
-    private com.github.mikephil.charting.charts.LineChart mChart;
+//    private LineChart mChart;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.test_recleview);
-		mChart = (LineChart) findViewById(R.id.linechart);
-		initChart();
+//		mChart = (LineChart) findViewById(R.id.linechart);
+//		initChart();
 		/* lineChart.setScaleEnabled(false);
 	        lineChart.setDrawBorders(true);
 	        lineChart.setBorderWidth(1);
@@ -93,7 +95,7 @@ public class TestRecleView extends Activity implements RecycleItemClickListener,
         recyclerView_one.setAdapter(mAdapter); 
 		
 	}
-	
+	/*
 	private void initChart() {
 		mChart.setOnChartGestureListener(this);
         mChart.setOnChartValueSelectedListener(this);
@@ -121,10 +123,10 @@ public class TestRecleView extends Activity implements RecycleItemClickListener,
 
         // create a custom MarkerView (extend MarkerView) and specify the layout
         // to use for it
-       /* MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
+        MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
         mv.setChartView(mChart); // For bounds control
         mChart.setMarker(mv); // Set the marker to the chart
-*/
+
         // x-axis limit line
         LimitLine llXAxis = new LimitLine(10f, "Index 10");
         llXAxis.setLineWidth(4f);
@@ -245,7 +247,7 @@ public class TestRecleView extends Activity implements RecycleItemClickListener,
             // set data
             mChart.setData(data);
         }
-    }
+    }*/
 	
 	public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
@@ -342,7 +344,7 @@ public class TestRecleView extends Activity implements RecycleItemClickListener,
 		
 	}
 
-	@Override
+	/*@Override
 	public void onValueSelected(Entry e, Highlight h) {
 		// TODO Auto-generated method stub
 		
@@ -401,5 +403,5 @@ public class TestRecleView extends Activity implements RecycleItemClickListener,
 		// TODO Auto-generated method stub
 		
 	}
-	
+	*/
 }

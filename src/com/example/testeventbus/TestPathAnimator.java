@@ -242,6 +242,7 @@ public class TestPathAnimator extends AppCompatActivity implements OnClickListen
 
 
 	        }
+	        
 	        flag=2;
 
 	    }

@@ -59,7 +59,7 @@
             android:name=".TestMaDesignActvity2"
 android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/app_name" >
-           <!--   <intent-filter>
+            <!--  <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter> -->
@@ -67,6 +67,24 @@ android:theme="@style/AppTheme.NoActionBar"
         <activity
             android:name=".TestPathAnimator"
 android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/app_name" >
+            <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".TestHtextViewAct"
+			android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/app_name" >
+           <!--   <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".TestSingleInstaller"
+			android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/app_name" >
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -78,6 +96,26 @@ android:theme="@style/AppTheme.NoActionBar"
         <service android:name=".ChangeService"></service>  
         <service android:name=".TestJobService"
     android:permission="android.permission.BIND_JOB_SERVICE" />
+        
+        <service  
+            android:name=".ApkService"  
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >  
+            <intent-filter>  
+                <action android:name="android.accessibilityservice.AccessibilityService" />  
+            </intent-filter>  
+  
+            <meta-data  
+                android:name="android.accessibilityservice"  
+                android:resource="@xml/accessibility" />  
+        </service> 
+        
+          <!-- 全局广播接收器 -->  
+        <receiver   
+            android:name=".AlertDialogReceiver" >  
+            <intent-filter>  
+                <action android:name="com.corget.over.dialog" />  
+            </intent-filter>  
+        </receiver>  
     </application>
 
 </manifest>
