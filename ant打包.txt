@@ -1,0 +1,63 @@
+1.DexKnife插件
+
+android.bat list target //查看当前支持的版本号
+android update project -p Dex65536 -t 1 //编译该版本生成buid.xml 文件 第一步
+ant clean debug install run // 编译开始了等各个项目都生成了buid.xml 后就可以编译了
+
+如果项目只是引用了第三方jar包，只要将jar包放在libs文件夹下就ok了，ant会在编译打包过程中会自动将第三方jar加进去的。但是当我们的android 项目参考了其他library项目，这时候我们最初在输入android update 命令的时候应该多一个参数 --subprojects ： 
+
+进入到library项目所在的目录，输入命令 android update lib-project -p ./  （注意是 lib-project）；
+
+ 　　再回到原项目,输入命令” android update project --name MenudrawSample -p ./ --subprojects "，这下就OK了。
+
+在iZhihuPaper中创建一个批处理文件，Mac为.sh文件，Window为.bat文件：
+cd /Users/cundong/Documents/github/iZhihuPaper ant deploy pause
+
+
+ant debug: 生成一个测试版apk，默认使用 debug key 进行签名，生成的apk（your_project_name-debug.apk）在bin目录下。
+
+　　ant release: 生成一个未签名和未aligned的apk包， project_name-release-unsigned.ap和project_name-release-unaligned.apk 在bin目录下。
+ant clean deploy 多渠道打包命令
+https://my.oschina.net/liucundong/blog/333301
+//在application oncreate 分包处理
+  private void dexTool() {
+	           File dexDir = new File(getFilesDir(), "dlibs");
+	           dexDir.mkdir();
+	           File dexFile = new File(dexDir, "libs.apk");
+	           File dexOpt = getCacheDir();
+	           try{
+	                  InputStream ins = getAssets().open("libs.apk");
+	                  if(dexFile.length() != ins.available()) {
+	                         FileOutputStream fos = new FileOutputStream(dexFile);
+	                         byte[]buf = new byte[4096];
+	                         int l;
+	                         while((l = ins.read(buf)) != -1) {
+	                                fos.write(buf,0, l);
+	                         }
+	                         fos.close();
+	                  }
+	                  ins.close();
+	           }catch (Exception e) {
+	                  throw new RuntimeException(e);
+	           }
+	   
+	           ClassLoader cl = getClassLoader();
+	           ApplicationInfo ai = getApplicationInfo();
+	           String nativeLibraryDir = null;
+	           if(Build.VERSION.SDK_INT > 8) {
+	                  nativeLibraryDir= ai.nativeLibraryDir;
+	           }else {
+	                  nativeLibraryDir= "/data/data/" + ai.packageName + "/lib/";
+	           }
+	           DexClassLoader dcl = new DexClassLoader(dexFile.getAbsolutePath(),
+	                         dexOpt.getAbsolutePath(),nativeLibraryDir, cl.getParent());
+	   
+	           try{
+	                  Field f = ClassLoader.class.getDeclaredField("parent");
+	                  f.setAccessible(true);
+	                  f.set(cl,dcl);
+	           }catch (Exception e) {
+	                  throw new RuntimeException(e);
+	           }
+	    }
+	    

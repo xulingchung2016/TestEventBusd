@@ -1,0 +1,84 @@
+危险权限
+
+这类权限需要在需要的时候，需要我们动态申请，比如：当我们需要打开相机拍摄照片的时候需要我们通过代码的方式在需要的地方去申请权限。Android6.0中权限问题中我们需要注意的是：
+
+1：由于权限API的问题，我们的Actiivty最好是AppCompatActivity类型的，也就是说在你的BaseActivity需要继承AppCompatActivity
+
+2：权限是分组的，同一组的权限申请其中一个，同组的权限就全部都申请了
+
+ 
+
+特殊权限 组：
+
+CALENDAR	日历
+
+CAMERA		相机
+
+CONTACTS	联系人
+
+LOCATION	定位
+
+MICROPHONE	麦克相关，比如录音
+
+PHONE		手机状态
+
+SENSORS		传感器
+
+SMS		短信
+
+STORAGE		存储权限
+
+ 
+
+具体的权限分组情况如下表：
+
+
+
+请求权限实现：
+
+使用的API：
+
+6.0的运行时权限，我们最终都是要支持的，通常我们需要使用如下的API
+
+int checkSelfPermission(String permission) 用来检测应用是否已经具有权限，这个方法是在API23中才有的，为了兼容低版本，建议使用v4包中的ContextCompat.checkSelfPermission，在下面的注意事项中有解释，这里就不在赘述了
+void requestPermissions(String[] permissions, int requestCode) 进行请求单个或多个权限，第一个参数是请求的权限集合，第二个参数是请求码，在回调监听中可以用来判断是哪个权限请求的结果
+void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) 用户对请求作出响应后的回调，请求成功或者失败的监听
+shouldShowRequestPermissionRationale这个API可以帮我们判断接下来的对话框是否包含”不再询问“选择框。在6.0之前的版本永远返回的是fasle
+比如我们请求CAMERA权限：
+
+@Override
+public void onClick(View v) {
+	if (!(checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)) {
+  		if (shouldShowRequestPermissionRationale(Manifest.permission.READ_CONTACTS)) {
+      			Toast.makeText(this, "Please grant the permission this time", Toast.LENGTH_LONG).show();
+    		}
+    	requestReadContactsPermission();
+	} else {
+  		Log.i(LOGTAG, "onClick granted");
+	}
+}
+ 
+private static final int REQUEST_PERMISSION_CAMERA_CODE = 1;
+private void requestCameraPermission() {
+    requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA_CODE);
+}
+ 
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    if (requestCode == REQUEST_PERMISSION_CAMERA_CODE) {
+        int grantResult = grantResults[0];
+        boolean granted = grantResult == PackageManager.PERMISSION_GRANTED;
+        Log.i(LOGTAG, "onRequestPermissionsResult granted=" + granted);
+    }
+}
+以上是申请一个权限时的方式。如果我们想同时申请多个权限就应该写为如下方式：
+
+ 
+
+private static final int REQUEST_CODE = 1;
+private void requestMultiplePermissions() {
+    String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE};
+    requestPermissions(permissions, REQUEST_CODE);
+}
+ 
